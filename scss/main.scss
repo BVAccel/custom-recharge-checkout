@@ -6,15 +6,14 @@
 @import "grid";
 @import "footer";
 
-.rc {
-  &__heading {
-    padding: 25px 0;
-    border-bottom: 1px solid $grey;
-  }
+.banner {
+  padding: 25px 0;
+  border-bottom: 1px solid $grey;
   &__logo {
     width: 130px;
+    margin: 0 20px;
 
-    @include mq($md) {
+    @include mq($lg) {
       display: block;
       margin: 0 auto;
     }
@@ -22,18 +21,19 @@
 }
 
 .cart {
-  padding: 30px 15px;
-  border-bottom: 1px solid $grey;
+  margin-bottom: 60px;
 
-  @include mq($sm) {
+  @include mq($lg) {
     padding: 30px;
   }
+}
 
+.products {
   &__hgroup {
-    margin-top: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 30px 20px;
   }
   &__heading {
     font-size: 31px;
@@ -43,21 +43,30 @@
   }
   &__hide {
     font-size: 14px;
-    font-weight: 600;
     letter-spacing: 0.1px;
     line-height: 14px;
     text-decoration: underline;
   }
-}
-.products {
-  margin-top: 30px;
+
+  &--mobile {
+    border-bottom: 1px solid $grey;
+    display: block;
+    @include mq($lg) {
+      display: none;
+    }
+
+    .product {
+      border-bottom: 0;
+    }
+  }
 }
 
 .product {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 16px;
   align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid $grey;
 
   &__img {
     flex: 0 0 80px;
@@ -66,6 +75,7 @@
       height: 80px;
       width: 80px;
       object-fit: cover;
+      display: block;
     }
   }
   &__details {
@@ -89,7 +99,13 @@
 }
 
 .customer {
-  padding-bottom: 30px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 0 20px;
+
+  @include mq($lg) {
+    padding: 0;
+  }
   &__heading {
     font-size: 24px;
     font-weight: 600;
@@ -122,8 +138,52 @@
     color: $darkgrey;
   }
 }
+
+.back {
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 13px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  font-weight: 600;
+
+  &--mobile {
+    text-align: center;
+    margin-top: 40px;
+    @include mq($lg) {
+      display: none;
+    }
+  }
+  &--desktop {
+    display: none;
+
+    @include mq($lg) {
+      display: block;
+    }
+  }
+
+  &__chevron {
+    margin-right: 5px;
+
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-left: 2px solid $darkgrey;
+      border-bottom: 2px solid $darkgrey;
+      transform: rotate(45deg);
+    }
+  }
+}
+
 .shipping {
-  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 0 20px;
+
+  @include mq($lg) {
+    padding: 0;
+  }
 
   &__heading {
     font-size: 31px;
@@ -139,21 +199,12 @@
     align-items: center;
     padding: 0 4px;
   }
-  &__tc {
-  }
-  &__submit {
-    display: inline-block;
-    border: 1px solid #000000;
-    color: #ffffff;
-    font-family: "Sofia Pro";
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    line-height: 16px;
-    text-align: center;
-    background-color: #000000;
-    height: 50px;
-    min-width: 200px;
+  &__tc-label {
+    color: $darkgrey;
+    font-size: 14px;
+    a {
+      color: inherit;
+    }
   }
 }
 
@@ -162,13 +213,17 @@
   width: 100%;
 
   &.no-gutter .input {
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
   }
 }
+
 .input {
   flex: 1;
   margin: 0 4px 8px;
+
+  &--2 {
+    flex: 2;
+  }
 
   input,
   select,
@@ -180,35 +235,40 @@
     background-color: #ffffff;
     box-shadow: inset 0 3px 0 0 rgba(0, 0, 0, 0.04),
       0 2px 0 0 rgba(0, 0, 0, 0.02);
-    color: #959595;
+    color: $darkgrey;
     font-size: 14px;
     letter-spacing: 0.1px;
     line-height: 22px;
     padding: 12px 15px;
     border-radius: 0;
+    font-family: inherit;
+    font-weight: 300;
   }
 
   button {
     background: #000;
     color: #fff;
+    border-color: #000;
   }
 }
 
-.summary {
-  &__heading {
-    font-size: 31px;
-    font-weight: 300;
-    letter-spacing: 0.37px;
-    line-height: 32px;
-  }
+.subtotals {
+  padding: 20px;
+
   &__cost {
     display: flex;
     justify-content: space-between;
     font-size: 13px;
     font-weight: bold;
     line-height: 13px;
-    padding: 11px 0;
+    padding: 10px 0;
   }
+}
+
+.coupon {
+  display: flex;
+  padding: 30px 20px;
+  border-bottom: 1px solid $grey;
 }
 
 .total {
@@ -217,17 +277,63 @@
   font-size: 21px;
   font-weight: bold;
   line-height: 21px;
-  padding: 31px 0;
+  padding: 30px 20px;
   border-top: 1px solid $grey;
-}
 
-.coupon {
-  display: flex;
-}
-
-.total {
   &__label {
   }
   &__content {
+  }
+}
+
+.panel {
+  background: #fff;
+  background-color: #ffffff;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.04);
+
+  @include mq($lg) {
+    border: 1px solid #e5e5e5;
+  }
+
+  &__heading {
+    font-size: 31px;
+    font-weight: 300;
+    letter-spacing: 0.37px;
+    line-height: 32px;
+    padding: 30px 20px 15px;
+  }
+}
+
+.submit {
+  display: inline-block;
+  border: 1px solid #000000;
+  color: #ffffff;
+  font-family: "Sofia Pro";
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 16px;
+  text-align: center;
+  background-color: #000000;
+  height: 50px;
+  min-width: 200px;
+  text-transform: uppercase;
+
+  &--desktop {
+    display: none;
+
+    @include mq($lg) {
+      display: block;
+    }
+  }
+
+  &--mobile {
+    width: calc(100% - 40px);
+    margin: 35px auto 0;
+    display: block;
+
+    @include mq($lg) {
+      display: none;
+    }
   }
 }

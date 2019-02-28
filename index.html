@@ -9,37 +9,26 @@
     <link href="./css/main.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="rc">
-      <div class="rc__heading">
-        <div class="container">
-          <img
-            class="rc__logo"
-            src="./img/logo.png"
-            alt="Skylar Body perfumes"
-          />
-        </div>
+    <section class="banner">
+      <div class="container">
+        <img
+          class="banner__logo"
+          src="./img/logo.png"
+          alt="Skylar Body perfumes"
+        />
       </div>
-    </div>
+    </section>
 
-    <div class="cart">
+    <section class="cart">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <div class="customer">
-              <h3 class="customer__heading">Customer information</h3>
-              <h4 class="customer__subheading">Logged in as</h4>
-              <h5 class="customer__email">becky@email.com</h5>
-              <p class="customer__logout">
-                Not you? Sign into a different account
-              </p>
-            </div>
+            <div class="products products--mobile">
+              <div class="products__hgroup">
+                <h1 class="products__heading">Your Cart</h1>
+                <div class="products__hide">Hide</div>
+              </div>
 
-            <div class="cart__hgroup">
-              <h1 class="cart__heading">Your Cart</h1>
-              <div class="cart__hide">Hide</div>
-            </div>
-
-            <div class="products">
               <div class="product">
                 <div class="product__img">
                   <img src="http://via.placeholder.com/150x150" alt="" />
@@ -69,7 +58,20 @@
               </div>
             </div>
 
-            <div class="shipping">
+            <div class="customer">
+              <p class="back back--desktop">
+                <span class="back__chevron"></span>Return to Cart
+              </p>
+
+              <h3 class="customer__heading">Customer information</h3>
+              <h4 class="customer__subheading">Logged in as</h4>
+              <h5 class="customer__email">becky@email.com</h5>
+              <p class="customer__logout">
+                Not you? Sign into a different account
+              </p>
+            </div>
+
+            <form class="shipping">
               <h4 class="shipping__heading">Shipping address</h4>
               <div class="input-group">
                 <div class="input">
@@ -136,20 +138,23 @@
               <div class="shipping__footer">
                 <span>
                   <input id="tc" type="checkbox" class="shipping__tc" />
-                  <label for="tc"
-                    ><a href="https://skylar.com/pages/terms-of-use"
-                      >I accept the Terms and Conditions</a
+                  <label for="tc" class="shipping__tc-label"
+                    >I accept the
+                    <a href="https://skylar.com/pages/terms-of-use"
+                      >Terms &amp; Conditions</a
                     ></label
                   >
                 </span>
 
-                <button class="shipping__submit" type="submit">Continue</button>
+                <button class="submit submit--desktop" type="submit">
+                  Continue
+                </button>
               </div>
-            </div>
+            </form>
           </div>
           <div class="col-md-6">
-            <div class="summary">
-              <div class="summary__heading">Order Summary</div>
+            <div class="panel">
+              <div class="panel__heading">Order Summary</div>
 
               <div class="products">
                 <div class="product">
@@ -180,40 +185,52 @@
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="coupon">
-              <div class="input-group no-gutter">
-                <div class="input">
-                  <input
-                    class="coupon__input"
-                    type="text"
-                    placeholder="Discount"
-                    name="discount_code"
-                  />
+              <div class="coupon">
+                <div class="input-group no-gutter">
+                  <div class="input input--2">
+                    <input
+                      class="coupon__input"
+                      type="text"
+                      placeholder="Discount"
+                      name="discount_code"
+                    />
+                  </div>
+                  <div class="input">
+                    <button class="coupon__submit" type="submit">APPLY</button>
+                  </div>
                 </div>
-                <div class="input">
-                  <button class="coupon__submit" type="submit">APPLY</button>
-                </div>
+              </div>
+
+              <div class="subtotals">
+                <li class="subtotals__cost">
+                  <span>SUBTOTAL</span><span>$39.99</span>
+                </li>
+                <li class="subtotals__cost">
+                  <span>SHIPPING</span><span>-</span>
+                </li>
+                <li class="subtotals__cost">
+                  <span>TAXES</span><span>-</span>
+                </li>
+              </div>
+
+              <div class="total">
+                <span class="total__label">TOTAL</span>
+                <span class="total__content">$39.99</span>
               </div>
             </div>
 
-            <div class="summary">
-              <li class="summary__cost">
-                <span>SUBTOTAL</span><span>$39.99</span>
-              </li>
-              <li class="summary__cost"><span>SHIPPING</span><span>-</span></li>
-              <li class="summary__cost"><span>TAXES</span><span>-</span></li>
-            </div>
+            <button class="submit submit--mobile" type="submit">
+              Continue
+            </button>
 
-            <div class="total">
-              <span class="total__label">TOTAL</span>
-              <span class="total__content">$39.99</span>
-            </div>
+            <p class="back back--mobile">
+              <span class="back__chevron"></span>Return to Cart
+            </p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="footer">
       <div class="container">
