@@ -5,13 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "sass --watch scss:css --style compressed --no-source-map",
+    "sass": "sass --watch ./src/scss:../server/dist/public/css --style compressed --no-source-map",
     "ts": "tsc --watch"
   },
   "keywords": [],
   "author": "Kyle Villeneuve | kyle.villeneuve@bvaccel.com | bvaccel.com",
   "license": "ISC",
   "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-sass": "^4.0.2",
+    "gulp-typescript": "^5.0.0",
+    "gulp-uglify": "^3.0.1",
     "typescript": "^3.3.3333"
-  }
+  },
+  "dependencies": {}
 }

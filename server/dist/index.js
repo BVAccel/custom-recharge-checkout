@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const app = express_1.default();
-app.use(express_1.default.static(__dirname + "/dist/"));
+app.use(express_1.default.static(__dirname + "/public"));
 app.get("/", (req, res) => {
-    res.sendfile(__dirname + "/build/index.html");
+    res.sendFile(__dirname + "/public/index.html");
 });
 app.use((err, req, res, next) => {
     console.log(err);
@@ -15,12 +15,12 @@ app.use((err, req, res, next) => {
     // removed when used in res.json
     const { status, path, message, value = null } = err;
     if (status && message) {
-        return res.status(status).json({ path, value, message });
+        return res.status(status).json({ errors: [{ path, value, message }] });
     }
     if (status) {
         return res.sendStatus(status);
     }
-    next();
+    return next();
 });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
