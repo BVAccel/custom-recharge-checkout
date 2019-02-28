@@ -39,7 +39,7 @@
               <div class="cart__hide">Hide</div>
             </div>
 
-            <div class="cart__products">
+            <div class="products">
               <div class="product">
                 <div class="product__img">
                   <img src="http://via.placeholder.com/150x150" alt="" />
@@ -71,15 +71,15 @@
 
             <div class="shipping">
               <h4 class="shipping__heading">Shipping address</h4>
-              <div class="shipping__input-group">
-                <div class="shipping__input">
+              <div class="input-group">
+                <div class="input">
                   <input
                     type="text"
                     placeholder="First Name"
                     name="first_name"
                   />
                 </div>
-                <div class="shipping__input">
+                <div class="input">
                   <input
                     type="text"
                     placeholder="First Name"
@@ -87,15 +87,15 @@
                   />
                 </div>
               </div>
-              <div class="shipping__input">
+              <div class="input">
                 <input type="text" placeholder="Company" name="company" />
               </div>
 
-              <div class="shipping__input">
+              <div class="input">
                 <input type="text" placeholder="Address" name="address1" />
               </div>
 
-              <div class="shipping__input">
+              <div class="input">
                 <input
                   type="text"
                   placeholder="Apt, suite, etc. (optional)"
@@ -103,24 +103,24 @@
                 />
               </div>
 
-              <div class="shipping__input">
+              <div class="input">
                 <input type="text" placeholder="City" name="city" />
               </div>
 
-              <div class="shipping__input-group">
-                <div class="shipping__input">
+              <div class="input-group">
+                <div class="input">
                   <select name="country">
                     <option disabled selected value="undefined">Country</option>
                   </select>
                 </div>
 
-                <div class="shipping__input">
+                <div class="input">
                   <select name="province">
                     <option disabled selected value="undefined">State</option>
                   </select>
                 </div>
 
-                <div class="shipping__input">
+                <div class="input">
                   <input
                     type="number"
                     min="5"
@@ -129,7 +129,7 @@
                   />
                 </div>
               </div>
-              <div class="shipping__input">
+              <div class="input">
                 <input type="tel" placeholder="Phone" />
               </div>
 
@@ -150,24 +150,52 @@
           <div class="col-md-6">
             <div class="summary">
               <div class="summary__heading">Order Summary</div>
-              <div class="product">
-                <div class="product__img">
-                  <img src="" alt="" />
+
+              <div class="products">
+                <div class="product">
+                  <div class="product__img">
+                    <img src="http://via.placeholder.com/150x150" alt="" />
+                  </div>
+                  <div class="product__details">
+                    <div class="product__title">Monthly Scent Club</div>
+                    <div class="product__option">Wild Child / 1.5 fl oz</div>
+                    <div class="product__frequency">Every month</div>
+                  </div>
+                  <div class="product__price">
+                    <p>$39.99 / month</p>
+                  </div>
                 </div>
-                <div class="product__details">
-                  <div class="product__title">Monthly Scent Club</div>
-                  <div class="product__option">Wild Child / 1.5 fl oz</div>
-                  <div class="product__frequency">Every month</div>
-                </div>
-                <div class="product__price">
-                  <p>$39.99 / month</p>
+
+                <div class="product">
+                  <div class="product__img">
+                    <img src="http://via.placeholder.com/150x150" alt="" />
+                  </div>
+                  <div class="product__details">
+                    <div class="product__title">Monthly Scent Club</div>
+                    <div class="product__option">Wild Child / 1.5 fl oz</div>
+                    <div class="product__frequency">Every 3 Months</div>
+                  </div>
+                  <div class="product__price">
+                    <p>$39.99 / month</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="coupon">
-              <input type="text" placeholder="Discount" name="discount_code" />
-              <button type="submit">APPLY</button>
+              <div class="input-group no-gutter">
+                <div class="input">
+                  <input
+                    class="coupon__input"
+                    type="text"
+                    placeholder="Discount"
+                    name="discount_code"
+                  />
+                </div>
+                <div class="input">
+                  <button class="coupon__submit" type="submit">APPLY</button>
+                </div>
+              </div>
             </div>
 
             <div class="summary">
