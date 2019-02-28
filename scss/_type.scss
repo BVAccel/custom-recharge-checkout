@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Sofia Pro Semi";
+  src: url("https://cdn.shopify.com/s/files/1/1445/2216/files/SofiaPro-SemiBold.woff2?12640048936920340724")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/1445/2216/files/SofiaPro-SemiBold.woff?12640048936920340724")
+      format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Sofia Pro";
+  src: url("https://cdn.shopify.com/s/files/1/1445/2216/files/SofiaProRegular.woff2?12640048936920340724")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/1445/2216/files/SofiaProRegular.woff?12640048936920340724")
+      format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Sofia Pro";
+  src: url("https://cdn.shopify.com/s/files/1/1445/2216/files/SofiaPro-Light.woff2?12640048936920340724")
+      format("woff2"),
+    url("https://cdn.shopify.com/s/files/1/1445/2216/files/SofiaPro-Light.woff?12640048936920340724")
+      format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+.h1 {
+}

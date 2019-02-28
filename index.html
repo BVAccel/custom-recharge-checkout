@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Recharge checkout</title>
+
+    <link href="./css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="rc">
+      <div class="rc__heading">
+        <div class="container">
+          <img
+            class="rc__logo"
+            src="./img/logo.png"
+            alt="Skylar Body perfumes"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="cart">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="customer">
+              <h3 class="customer__heading">Customer information</h3>
+              <h4 class="customer__subheading">Logged in as</h4>
+              <h5 class="customer__email">becky@email.com</h5>
+              <p class="customer__logout">
+                Not you? Sign into a different account
+              </p>
+            </div>
+
+            <div class="cart__hgroup">
+              <h1 class="cart__heading">Your Cart</h1>
+              <div class="cart__hide">Hide</div>
+            </div>
+
+            <div class="cart__products">
+              <div class="product">
+                <div class="product__img">
+                  <img src="http://via.placeholder.com/150x150" alt="" />
+                </div>
+                <div class="product__details">
+                  <div class="product__title">Monthly Scent Club</div>
+                  <div class="product__option">Wild Child / 1.5 fl oz</div>
+                  <div class="product__frequency">Every month</div>
+                </div>
+                <div class="product__price">
+                  <p>$39.99 / month</p>
+                </div>
+              </div>
+
+              <div class="product">
+                <div class="product__img">
+                  <img src="http://via.placeholder.com/150x150" alt="" />
+                </div>
+                <div class="product__details">
+                  <div class="product__title">Monthly Scent Club</div>
+                  <div class="product__option">Wild Child / 1.5 fl oz</div>
+                  <div class="product__frequency">Every 3 Months</div>
+                </div>
+                <div class="product__price">
+                  <p>$39.99 / month</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="shipping">
+              <h4 class="shipping__heading">Shipping address</h4>
+              <div class="shipping__input-group">
+                <div class="shipping__input">
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    name="first_name"
+                  />
+                </div>
+                <div class="shipping__input">
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    name="last_name"
+                  />
+                </div>
+              </div>
+              <div class="shipping__input">
+                <input type="text" placeholder="Company" name="company" />
+              </div>
+
+              <div class="shipping__input">
+                <input type="text" placeholder="Address" name="address1" />
+              </div>
+
+              <div class="shipping__input">
+                <input
+                  type="text"
+                  placeholder="Apt, suite, etc. (optional)"
+                  name="address2"
+                />
+              </div>
+
+              <div class="shipping__input">
+                <input type="text" placeholder="City" name="city" />
+              </div>
+
+              <div class="shipping__input-group">
+                <div class="shipping__input">
+                  <select name="country">
+                    <option disabled selected value="undefined">Country</option>
+                  </select>
+                </div>
+
+                <div class="shipping__input">
+                  <select name="province">
+                    <option disabled selected value="undefined">State</option>
+                  </select>
+                </div>
+
+                <div class="shipping__input">
+                  <input
+                    type="number"
+                    min="5"
+                    max="10"
+                    placeholder="Zip Code"
+                  />
+                </div>
+              </div>
+              <div class="shipping__input">
+                <input type="tel" placeholder="Phone" />
+              </div>
+
+              <div class="shipping__footer">
+                <span>
+                  <input id="tc" type="checkbox" class="shipping__tc" />
+                  <label for="tc"
+                    ><a href="https://skylar.com/pages/terms-of-use"
+                      >I accept the Terms and Conditions</a
+                    ></label
+                  >
+                </span>
+
+                <button class="shipping__submit" type="submit">Continue</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="summary">
+              <div class="summary__heading">Order Summary</div>
+              <div class="product">
+                <div class="product__img">
+                  <img src="" alt="" />
+                </div>
+                <div class="product__details">
+                  <div class="product__title">Monthly Scent Club</div>
+                  <div class="product__option">Wild Child / 1.5 fl oz</div>
+                  <div class="product__frequency">Every month</div>
+                </div>
+                <div class="product__price">
+                  <p>$39.99 / month</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="coupon">
+              <input type="text" placeholder="Discount" name="discount_code" />
+              <button type="submit">APPLY</button>
+            </div>
+
+            <div class="summary">
+              <li class="summary__cost">
+                <span>SUBTOTAL</span><span>$39.99</span>
+              </li>
+              <li class="summary__cost"><span>SHIPPING</span><span>-</span></li>
+              <li class="summary__cost"><span>TAXES</span><span>-</span></li>
+            </div>
+
+            <div class="total">
+              <span class="total__label">TOTAL</span>
+              <span class="total__content">$39.99</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p>All rights reserved &copy; 2019 Skylar</p>
+        <a href="https://skylar.zendesk.com/hc/en-us#360000472694"
+          >Refund policy</a
+        >
+        <a href="https://skylar.com/pages/privacy-policy">Privacy policy</a>
+        <a href="https://skylar.com/pages/terms-of-use">Terms of service</a>
+      </div>
+    </div>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>
