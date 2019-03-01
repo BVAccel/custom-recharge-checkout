@@ -5,7 +5,6 @@ const termsAndConditions: HTMLInputElement = document.querySelector('input[name=
 const handleShippingSubmit = (e: Event) => {
   e.preventDefault();
 
-
   if(!termsAndConditions.checked) {
     alert("You must accept our Terms and Conditions to checkout")
 
@@ -20,6 +19,10 @@ const handleShippingSubmit = (e: Event) => {
 
   localStorage.setItem('shipping_address', JSON.stringify(body));
   window.location.href = '/payment';
+}
+
+const fetchCartData = () => {
+  
 }
 
 const populateFormData = () => {
