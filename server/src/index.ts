@@ -3,15 +3,11 @@ import express, { NextFunction, Request, Response } from "express";
 
 const app = express();
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/build"));
 app.use(compression());
 
-app.get("/shipping", (req: Request, res: Response) => {
-  res.sendFile(__dirname + "/public/step1.html");
-});
-
-app.get("/payment", (req: Request, res: Response) => {
-  res.sendFile(__dirname + "/public/step2.html");
+app.use((req, res, next) => {
+  return res.sendFile(__dirname + "/build/index.html");
 });
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

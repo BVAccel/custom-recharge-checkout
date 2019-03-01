@@ -2,8 +2,8 @@ import React from "react";
 import "../css/Footer.css";
 
 export default () => (
-  <div class="footer">
-    <div class="container">
+  <div className="footer">
+    <div className="container">
       <p>All rights reserved &copy; 2019 Skylar</p>
       <a href="https://skylar.zendesk.com/hc/en-us#360000472694">
         Refund policy

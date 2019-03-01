@@ -6,13 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const compression_1 = __importDefault(require("compression"));
 const express_1 = __importDefault(require("express"));
 const app = express_1.default();
-app.use(express_1.default.static(__dirname + "/public"));
+app.use(express_1.default.static(__dirname + "/build"));
 app.use(compression_1.default());
-app.get("/shipping", (req, res) => {
-    res.sendFile(__dirname + "/public/step1.html");
-});
-app.get("/payment", (req, res) => {
-    res.sendFile(__dirname + "/public/step2.html");
+app.use((req, res, next) => {
+    return res.sendFile(__dirname + "/build/index.html");
 });
 app.use((err, req, res, next) => {
     console.log(err);

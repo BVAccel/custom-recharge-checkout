@@ -9,4 +9,12 @@ export const useInput = initialValue => {
   };
 };
 
-export const somethingElse = () => false;
+export const useCheckbox = (initialValue = false) => {
+  const [value, setValue] = useState(initialValue);
+
+  return {
+    type: "checkbox",
+    checked: value,
+    onChange: () => setValue(!value)
+  };
+};

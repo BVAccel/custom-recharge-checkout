@@ -1,111 +1,237 @@
-import React from "react";
-import countryStates from "../utils/country-states.json";
-import { useInput } from "../utils/hooks";
+import React, { useState } from "react";
 
-export default function() {
-  const countryInput = useInput("United States");
-  const stateInput = useInput(countryStates[countryInput.value]);
+import countryStates from "../utils/country-states.json";
+import { useInput, useCheckbox } from "../utils/hooks";
+import History from "../utils/History";
+
+export default function Shipping() {
+  const [errors, setErrors] = useState([]);
+
+  // get input values from local storage
+  const {
+    first_name,
+    last_name,
+    company,
+    address1,
+    address2,
+    country,
+    province,
+    city,
+    zip,
+    phone
+  } = JSON.parse(localStorage.getItem("shipping_address") || "{}");
+
+  // create input hooks, set default values if possible
+  const firstNameInput = useInput(first_name || "");
+  const lastNameInput = useInput(last_name || "");
+  const companyInput = useInput(company || "");
+  const address1Input = useInput(address1 || "");
+  const address2Input = useInput(address2 || "");
+  const countryInput = useInput(country || "United States");
+  const stateInput = useInput(province || "");
+  const cityInput = useInput(city || "");
+  const zipInput = useInput(zip || "");
+  const phoneInput = useInput(phone || "");
+  const acceptTermsInput = useCheckbox(false);
+
+  // get all states for the selected country
+  const states = countryStates[countryInput.value];
+
+  const handleShippingFormSubmit = e => {
+    e.preventDefault();
+
+    setErrors([]);
+
+    try {
+      const shipping_address = {
+        address1: address1Input.value,
+        address2: address2Input.value,
+        city: cityInput.value,
+        company: companyInput.value,
+        country: countryInput.value,
+        first_name: firstNameInput.value,
+        last_name: lastNameInput.value,
+        phone: phoneInput.value,
+        province: stateInput.value,
+        zip: zipInput.value
+      };
+
+      // save input values in localStorage
+      localStorage.setItem(
+        "shipping_address",
+        JSON.stringify(shipping_address)
+      );
+
+      const errors = [];
+
+      // prevent user from continuing to payment options if terms and conditions aren't accepted
+      // spaghetti because I dont have time to write better validation logic
+      if (!acceptTermsInput.checked) {
+        errors.push({
+          message: "You must accept the terms and conditions to checkout",
+          field: "termsAndConditions"
+        });
+      }
+
+      if (!address1Input.value.length) {
+        errors.push({
+          message: "Address is required",
+          field: "address1"
+        });
+      }
+
+      if (!cityInput.value.length) {
+        errors.push({
+          message: "City is required",
+          field: "city"
+        });
+      }
+
+      if (!countryInput.value.length) {
+        errors.push({
+          message: "Country is required",
+          field: "country"
+        });
+      }
+
+      if (states.length && !stateInput.value.length) {
+        errors.push({
+          message: "State is required",
+          field: "state"
+        });
+      }
+
+      if (!zipInput.value.length) {
+        errors.push({
+          message: "Zip Code is required",
+          field: "zip"
+        });
+      }
+
+      if (!lastNameInput.value.length) {
+        errors.push({
+          message: "Last Name is required",
+          field: "last_name"
+        });
+      }
+
+      if (errors.length) {
+        throw errors;
+      }
+
+      // if validation passes, continue to payments
+      History.push("/payment");
+    } catch (err) {
+      setErrors(err);
+    }
+  };
 
   return (
-    <section class="cart">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="products products--mobile">
-              <div class="products__hgroup">
-                <h1 class="products__heading">Your Cart</h1>
-                <div class="products__hide">Hide</div>
+    <section className="cart">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <div className="products products--mobile">
+              <div className="products__hgroup">
+                <h1 className="products__heading">Your Cart</h1>
+                <div className="products__hide">Hide</div>
               </div>
 
-              <div class="product">
-                <div class="product__img">
+              <div className="product">
+                <div className="product__img">
                   <img src="http://via.placeholder.com/150x150" alt="" />
                 </div>
-                <div class="product__details">
-                  <div class="product__title">Monthly Scent Club</div>
-                  <div class="product__option">Wild Child / 1.5 fl oz</div>
-                  <div class="product__frequency">Every month</div>
+                <div className="product__details">
+                  <div className="product__title">Monthly Scent Club</div>
+                  <div className="product__option">Wild Child / 1.5 fl oz</div>
+                  <div className="product__frequency">Every month</div>
                 </div>
-                <div class="product__price">
+                <div className="product__price">
                   <p>$39.99 / month</p>
                 </div>
               </div>
 
-              <div class="product">
-                <div class="product__img">
+              <div className="product">
+                <div className="product__img">
                   <img src="http://via.placeholder.com/150x150" alt="" />
                 </div>
-                <div class="product__details">
-                  <div class="product__title">Monthly Scent Club</div>
-                  <div class="product__option">Wild Child / 1.5 fl oz</div>
-                  <div class="product__frequency">Every 3 Months</div>
+                <div className="product__details">
+                  <div className="product__title">Monthly Scent Club</div>
+                  <div className="product__option">Wild Child / 1.5 fl oz</div>
+                  <div className="product__frequency">Every 3 Months</div>
                 </div>
-                <div class="product__price">
+                <div className="product__price">
                   <p>$39.99 / month</p>
                 </div>
               </div>
             </div>
 
-            <div class="customer">
-              <a class="back back--desktop" href="https://skylar.com/cart">
-                <span class="back__chevron" />
+            <div className="customer">
+              <a className="back back--desktop" href="https://skylar.com/cart">
+                <span className="back__chevron" />
                 Return to Cart
               </a>
 
-              <h3 class="customer__heading">Customer information</h3>
-              <h4 class="customer__subheading">Logged in as</h4>
-              <h5 class="customer__email">becky@email.com</h5>
-              <p class="customer__logout">
+              <h3 className="customer__heading">Customer information</h3>
+              <h4 className="customer__subheading">Logged in as</h4>
+              <h5 className="customer__email">becky@email.com</h5>
+              <p className="customer__logout">
                 Not you? Sign into a different account
               </p>
             </div>
 
-            <form class="shipping">
-              <h4 class="shipping__heading">Shipping address</h4>
+            <form className="shipping" onSubmit={handleShippingFormSubmit}>
+              <h4 className="shipping__heading">Shipping address</h4>
 
-              <div class="input-container">
-                <div class="input-group">
-                  <div class="input">
+              {!!errors.length && (
+                <div className="Alert Alert--danger">
+                  {errors.map((err, i) => (
+                    <li key={`err-${i}`}>{err.message}</li>
+                  ))}
+                </div>
+              )}
+
+              <div className="input-container">
+                <div className="input-group">
+                  <div className="input">
                     <input
                       type="text"
                       placeholder="First Name"
-                      name="first_name"
+                      {...firstNameInput}
                     />
                   </div>
-                  <div class="input">
+                  <div className="input">
                     <input
                       type="text"
                       placeholder="Last Name"
-                      name="last_name"
+                      {...lastNameInput}
                     />
                   </div>
                 </div>
-                <div class="input">
-                  <input type="text" placeholder="Company" name="company" />
+                <div className="input">
+                  <input type="text" placeholder="Company" {...companyInput} />
                 </div>
 
-                <div class="input">
-                  <input type="text" placeholder="Address" name="address1" />
+                <div className="input">
+                  <input type="text" placeholder="Address" {...address1Input} />
                 </div>
 
-                <div class="input">
+                <div className="input">
                   <input
                     type="text"
                     placeholder="Apt, suite, etc. (optional)"
-                    name="address2"
+                    {...address2Input}
                   />
                 </div>
 
-                <div class="input">
-                  <input type="text" placeholder="City" name="city" />
+                <div className="input">
+                  <input type="text" placeholder="City" {...cityInput} />
                 </div>
 
-                <div class="input-group">
-                  <div class="input">
+                <div className="input-group">
+                  <div className="input input--select">
                     <select {...countryInput}>
-                      <option disabled selected value="undefined">
-                        Country
-                      </option>
+                      <option disabled>Country</option>
 
                       <option value="United States">United States</option>
                       <option value="Canada">Canada</option>
@@ -115,41 +241,44 @@ export default function() {
                         ---
                       </option>
 
-                      {Object.keys(countryStates).map(country => (
-                        <option value={country}>{country}</option>
+                      {Object.keys(countryStates).map((country, i) => (
+                        <option key={`country-${i}`} value={country}>
+                          {country}
+                        </option>
                       ))}
                     </select>
                   </div>
 
-                  <div class="input">
-                    <select {...stateInput}>
-                      <option disabled selected>
-                        State
-                      </option>
-                      {countryStates[countryInput.value].map(state => (
-                        <option value={state}>{state}</option>
-                      ))}
-                    </select>
-                  </div>
+                  {!!states.length && (
+                    <div className="input input--select">
+                      <select {...stateInput}>
+                        <option disabled>State</option>
+                        {states.map((state, i) => (
+                          <option key={`state-${i}`} value={state}>
+                            {state}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
 
-                  <div class="input">
-                    <input type="number" name="zip" placeholder="Zip Code" />
+                  <div className="input">
+                    <input type="number" placeholder="Zip Code" {...zipInput} />
                   </div>
                 </div>
-                <div class="input">
-                  <input type="tel" placeholder="Phone" name="phone" />
+                <div className="input">
+                  <input type="tel" placeholder="Phone" {...phoneInput} />
                 </div>
               </div>
 
-              <div class="shipping__footer">
+              <div className="shipping__footer">
                 <span>
                   <input
                     id="tc"
-                    type="checkbox"
-                    class="shipping__tc skip"
-                    name="tc"
+                    className="shipping__tc skip"
+                    {...acceptTermsInput}
                   />
-                  <label for="tc" class="shipping__tc-label">
+                  <label htmlFor="tc" className="shipping__tc-label">
                     {` `}I accept the{` `}
                     <a href="https://skylar.com/pages/terms-of-use">
                       Terms &amp; Conditions
@@ -157,91 +286,95 @@ export default function() {
                   </label>
                 </span>
 
-                <button class="submit submit--desktop" type="submit">
+                <button className="submit submit--desktop" type="submit">
                   Continue
                 </button>
               </div>
             </form>
           </div>
-          <div class="col-md-6">
-            <div class="panel">
-              <div class="panel__heading">Order Summary</div>
+          <div className="col-md-6">
+            <div className="panel">
+              <div className="panel__heading">Order Summary</div>
 
-              <div class="products">
-                <div class="product">
-                  <div class="product__img">
+              <div className="products">
+                <div className="product">
+                  <div className="product__img">
                     <img src="http://via.placeholder.com/150x150" alt="" />
                   </div>
-                  <div class="product__details">
-                    <div class="product__title">Monthly Scent Club</div>
-                    <div class="product__option">Wild Child / 1.5 fl oz</div>
-                    <div class="product__frequency">Every month</div>
+                  <div className="product__details">
+                    <div className="product__title">Monthly Scent Club</div>
+                    <div className="product__option">
+                      Wild Child / 1.5 fl oz
+                    </div>
+                    <div className="product__frequency">Every month</div>
                   </div>
-                  <div class="product__price">
+                  <div className="product__price">
                     <p>$39.99 / month</p>
                   </div>
                 </div>
 
-                <div class="product">
-                  <div class="product__img">
+                <div className="product">
+                  <div className="product__img">
                     <img src="http://via.placeholder.com/150x150" alt="" />
                   </div>
-                  <div class="product__details">
-                    <div class="product__title">Monthly Scent Club</div>
-                    <div class="product__option">Wild Child / 1.5 fl oz</div>
-                    <div class="product__frequency">Every 3 Months</div>
+                  <div className="product__details">
+                    <div className="product__title">Monthly Scent Club</div>
+                    <div className="product__option">
+                      Wild Child / 1.5 fl oz
+                    </div>
+                    <div className="product__frequency">Every 3 Months</div>
                   </div>
-                  <div class="product__price">
+                  <div className="product__price">
                     <p>$39.99 / month</p>
                   </div>
                 </div>
               </div>
 
-              <div class="coupon">
-                <div class="input-group no-gutter">
-                  <div class="input input--2">
+              <div className="coupon">
+                <div className="input-group no-gutter">
+                  <div className="input input--2">
                     <input
-                      class="coupon__input"
+                      className="coupon__input"
                       type="text"
                       placeholder="Discount"
                       name="discount_code"
                     />
                   </div>
-                  <div class="input">
-                    <button class="coupon__submit" type="submit">
+                  <div className="input">
+                    <button className="coupon__submit" type="submit">
                       APPLY
                     </button>
                   </div>
                 </div>
               </div>
 
-              <div class="subtotals">
-                <li class="subtotals__cost">
+              <div className="subtotals">
+                <li className="subtotals__cost">
                   <span>SUBTOTAL</span>
                   <span>$39.99</span>
                 </li>
-                <li class="subtotals__cost">
+                <li className="subtotals__cost">
                   <span>SHIPPING</span>
                   <span>-</span>
                 </li>
-                <li class="subtotals__cost">
+                <li className="subtotals__cost">
                   <span>TAXES</span>
                   <span>-</span>
                 </li>
               </div>
 
-              <div class="total">
-                <span class="total__label">TOTAL</span>
-                <span class="total__content">$39.99</span>
+              <div className="total">
+                <span className="total__label">TOTAL</span>
+                <span className="total__content">$39.99</span>
               </div>
             </div>
 
-            <button class="submit submit--mobile" type="submit">
+            <button className="submit submit--mobile" type="submit">
               Continue
             </button>
 
-            <a href="https://skylar.com/cart" class="back back--mobile">
-              <span class="back__chevron" />
+            <a href="https://skylar.com/cart" className="back back--mobile">
+              <span className="back__chevron" />
               Return to Cart
             </a>
           </div>

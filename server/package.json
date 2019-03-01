@@ -9,7 +9,8 @@
     "dev": "NODE_ENV=development tsc-watch --onSuccess \"node ./dist/index.js\" --onFailure \"echo ⚠️ Compilation Failed\"",
     "dev-windows": "SET NODE_ENV=development&& tsc-watch --onSuccess \"node ./dist/index.js\" --onFailure \"echo ⚠️ Compilation Failed\"",
     "build": "tsc",
-    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix"
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "deploy": "git subtree push --prefix dist heroku master"
   },
   "keywords": [],
   "author": "",
