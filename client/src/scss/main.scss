@@ -13,6 +13,9 @@
   text-transform: uppercase;
   margin-bottom: 30px;
   font-weight: 600;
+  color: $darkgrey;
+  display: block;
+  text-decoration: none;
 
   &--mobile {
     text-align: center;
@@ -185,6 +188,7 @@
   &--mobile {
     border-bottom: 1px solid $grey;
     display: block;
+    margin-bottom: 30px;
     @include mq($lg) {
       display: none;
     }

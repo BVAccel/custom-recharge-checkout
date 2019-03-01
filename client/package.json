@@ -12,7 +12,8 @@
   "author": "Kyle Villeneuve | kyle.villeneuve@bvaccel.com | bvaccel.com",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
+    "gulp-clean": "^0.4.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-imagemin": "^5.0.3",
     "gulp-sass": "^4.0.2",
