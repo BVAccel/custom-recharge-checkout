@@ -3,11 +3,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const compression_1 = __importDefault(require("compression"));
 const express_1 = __importDefault(require("express"));
 const app = express_1.default();
 app.use(express_1.default.static(__dirname + "/public"));
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
+app.use(compression_1.default());
+app.get("/shipping", (req, res) => {
+    res.sendFile(__dirname + "/public/step1.html");
+});
+app.get("/payment", (req, res) => {
+    res.sendFile(__dirname + "/public/step2.html");
 });
 app.use((err, req, res, next) => {
     console.log(err);
